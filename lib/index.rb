@@ -22,7 +22,9 @@ end
   if ENV["REPORT_PATH"]
     read_json(ENV["REPORT_PATH"])
   else
-    Dir.chdir(ENV["GITHUB_WORKSPACE"]) { JSON.parse(`standardrb --parallel -f json`) }
+    Dir.chdir(ENV["GITHUB_WORKSPACE"]) do
+      JSON.parse(`standardrb --parallel -f json #{ENV["FILES_TO_CHECK"]}`)
+    end
   end
 
 GithubCheckRunService.new(@report, @github_data, ReportAdapter).run
