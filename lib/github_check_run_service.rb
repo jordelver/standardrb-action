@@ -11,6 +11,8 @@ class GithubCheckRunService
   end
 
   def run
+    return if @report.nil?
+
     id = @client.post(
       endpoint_url,
       create_check_payload
