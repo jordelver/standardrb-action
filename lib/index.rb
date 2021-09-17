@@ -23,7 +23,15 @@ end
     read_json(ENV["REPORT_PATH"])
   else
     Dir.chdir(ENV["GITHUB_WORKSPACE"]) do
-      JSON.parse(`standardrb --parallel -f json #{ENV["FILES_TO_CHECK"]}`)
+      if ENV["FILES_TO_CHECK"]
+        # Run on selected files if there are any
+        if !ENV["FILES_TO_CHECK"].empty?
+          JSON.parse(`standardrb --parallel -f json #{ENV["FILES_TO_CHECK"]}`)
+        end
+      else
+        # Run over the whole codebase
+        JSON.parse(`standardrb --parallel -f json`)
+      end
     end
   end
 
