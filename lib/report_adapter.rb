@@ -54,7 +54,6 @@ class ReportAdapter
     end
 
     def total_offenses(report)
-      return 0 if report.nil?
       report.dig("summary", "offense_count")
     end
   end
