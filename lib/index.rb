@@ -19,8 +19,6 @@ end
   repo: ENV["GITHUB_REPOSITORY_NAME"] || @event_json.dig("repository", "name"),
 }
 
-puts "Files to check: #{ENV["FILES_TO_CHECK"].inspect}"
-
 @report =
   if ENV["REPORT_PATH"]
     read_json(ENV["REPORT_PATH"])
