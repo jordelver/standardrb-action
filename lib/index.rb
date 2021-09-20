@@ -18,6 +18,9 @@ end
   owner: ENV["GITHUB_REPOSITORY_OWNER"] || @event_json.dig("repository", "owner", "login"),
   repo: ENV["GITHUB_REPOSITORY_NAME"] || @event_json.dig("repository", "name"),
 }
+
+puts ENV["FILES_TO_CHECK"].inspect
+
 @report =
   if ENV["REPORT_PATH"]
     read_json(ENV["REPORT_PATH"])
